@@ -1,0 +1,41 @@
+#game td {
+    height: 10px;
+    width: 10px;
+    
+    text-align: center;
+    vertical-align: middle;
+    font-size: 9px;
+    
+    background: #eee;
+    border:1px solid #ddd;
+}
+
+.body {
+    background-color: grey !important;
+}
+
+.head {
+    background-color: red !important;
+}
+
+.goal {
+    background-color: green !important;
+}
+
+nav ul {
+    margin: 0; padding: 0;
+}
+
+nav ul li {
+    float: left;
+    padding: 10px;
+    margin-right: 10px;
+    list-style: none;
+    
+    font-family: arial;
+    font-size: 0.75em;
+}
+
+table {
+    clear: left;
+}
