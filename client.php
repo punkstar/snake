@@ -27,7 +27,11 @@ if (isset($_GET['x'])) {
         </script>
     </head>
     <body>
-        <a href="reset.php">Reset</a>
+        <nav>
+            <ul>
+                <li><a href="reset.php">Reset</a></li>
+            </ul>
+        </nav>
         <table id="game">
         <?php for ($y = $y_start; $y < $y_start + $y_count; $y++): ?>
             <tr>
