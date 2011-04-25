@@ -75,6 +75,10 @@ class Snake {
         return rand(self::$NORTH, self::$WEST);
     }
     
+    public function clockwiseMoveDirection($direction) {
+        return (((($direction - 2) + 1) % 4) + 2);
+    }
+    
     public function getOccupiedCells() {
         
     }

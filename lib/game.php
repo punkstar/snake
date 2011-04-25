@@ -26,17 +26,48 @@ class Game {
             $goal_x = $this->_goal->getX();
             $goal_y = $this->_goal->getY();
             
+            $move_direction = $snake->getRandomDirection();
+            
             if        ($snake_x < $goal_x && $this->isFreeCell($snake_x + 1, $snake_y)) {
-                $snake->move($snake::$EAST);
+                $move_direction = $snake::$EAST;
             } else if ($snake_x > $goal_x && $this->isFreeCell($snake_x - 1, $snake_y)) {
-                $snake->move($snake::$WEST);
+                $move_direction = snake::$WEST;
             } else if ($snake_y < $goal_y && $this->isFreeCell($snake_x, $snake_y + 1)) {
-                $snake->move($snake::$SOUTH);
+                $move_direction = $snake::$SOUTH;
             } else if ($snake_y > $goal_y && $this->isFreeCell($snake_x, $snake_y - 1)) {
-                $snake->move($snake::$NORTH);
-            } else {
-                $snake->move($snake->getRandomDirection());
+                $move_direction = $snake::$NORTH;
             }
+            
+            $check_count = 0;
+            while ($check_count < 4) {
+                $new_x = $snake_x;
+                $new_y = $snake_y;
+                
+                switch($move_direction) {
+                    case $snake::$EAST:
+                        $new_x++;
+                        break;
+                    case $snake::$WEST:
+                        $new_x--;
+                        break;
+                    case $snake::$SOUTH:
+                        $new_y++;
+                        break;
+                    case $snake::$NORTH:
+                        $new_y--;
+                        break;
+                }
+                
+                if ($this->isFreeCell($new_x, $new_y)) {
+                    $snake->move($move_direction);
+                    return;
+                } else {
+                    $move_direction = $snake->clockwiseMoveDirection($move_direction);
+                    $check_count++;
+                }
+            }
+            
+            // Game over!
         }
     }
     

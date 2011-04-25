@@ -31,7 +31,7 @@ if (mysql_num_rows($query) == 1) {
 } else {
     // Set the game up!
     
-    $grid = new Grid(80, 40);
+    $grid = new Grid(40, 40);
     $game = new Game($grid);
     $snake = new Snake(1);
 
