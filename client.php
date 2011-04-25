@@ -4,11 +4,15 @@ session_start();
 $x_start = 0;
 $y_start = 0;
 
-$x_count = 40;
-$y_count = 40;
+$x_count = 20;
+$y_count = 20;
 
 if (isset($_GET['x'])) {
     $x_start = (int) $_GET['x'];
+}
+
+if (isset($_GET['y'])) {
+    $y_start = (int) $_GET['y'];
 }
 ?>
 <!DOCTYPE html>
@@ -22,11 +26,29 @@ if (isset($_GET['x'])) {
         <script type="text/javascript">
         $(function () {
             all_cells = $('td.cell');
-            draw_snake(<?php echo($x_start == 0) ? "true" : "false" ?>);
+            draw_snake(<?php echo($x_start == 0 && $y_start == 0) ? "true" : "false" ?>);
+            
+            fullscreen();
         });
+        
+        function fullscreen() {
+            $('body').css({
+                padding: 0,
+                margin: 0
+            });
+            
+            $('#game').css({
+                width: $(window).width(),
+                height: $(window).height()
+            });
+            
+            $("nav").hide();
+        }
+        
+        $(window).resize(function () { fullscreen(); });
         </script>
     </head>
-    <body>
+    <body class="fullscreen">
         <nav>
             <ul>
                 <li><a href="reset.php">Reset</a></li>
